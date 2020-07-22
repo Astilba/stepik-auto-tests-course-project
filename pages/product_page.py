@@ -19,3 +19,12 @@ class ProductPage(BasePage):
         real_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
         basket_product_name = self.browser.find_element(*ProductPageLocators.BASKET_PRODUCT_NAME).text
         assert real_name == basket_product_name, 'Incorrect product name in messages'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should be disappear"
+
